@@ -1,3 +1,5 @@
+from pyasn1_modules.rfc3281 import id_aca, id_aca_accessIdentity
+
 from webScraping import find_term_link, scrape_content_from_link
 from flask import Flask, request, jsonify
 from flask_cors import CORS
