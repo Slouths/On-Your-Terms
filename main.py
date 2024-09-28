@@ -6,6 +6,11 @@ for dynamic web scraping and BeautifulSoup for parsing the scraped content.
 """
 
 from webScraping import find_term_link, scrape_content_from_link
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  # This loads the variables from .env
+api_key = os.getenv('API_KEY')
 
 # Step 5: Example usage
 if __name__ == "__main__":
