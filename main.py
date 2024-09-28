@@ -18,7 +18,7 @@ load_dotenv()  # This loads the variables from .env
 api_key = os.getenv('API_KEY')
 
 app = Flask(__name__)
-CORS(app)  # This allows CORS for all domains on all routes
+CORS(app, resources={r"/receive-url": {"origins": "*"}})  # This allows CORS for all domains on all routes
 
 
 
