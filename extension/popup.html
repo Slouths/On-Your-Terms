@@ -1,10 +1,24 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Send URL</title>
-  </head>
-  <body>
-    <button id="send-url">Send Current Tab URL</button>
+<head>
+    <title>Terms Finder</title>
+    <style>
+        body {
+            width: 400px;
+            padding: 10px;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <h2>Terms Finder</h2>
+    <button id="send-url">Find Terms</button>
+    <div id="results"></div>
     <script src="popup.js"></script>
-  </body>
+</body>
 </html>
