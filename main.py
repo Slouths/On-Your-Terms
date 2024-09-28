@@ -5,6 +5,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from bs4 import BeautifulSoup
+import requests
+
 chrome_options = Options()
 chrome_options.add_argument("--headless")  # Run in headless mode
 
@@ -17,20 +20,6 @@ def initialize_driver():
 
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     return driver
-
-
-# Step 2: Get links from a dynamic webpage
-def get_links_from_dynamic_page(url):
-    driver = initialize_driver()
-    driver.get(url)
-
-    # Example: get all links (<a> tags) from the dynamic webpage
-    links = driver.find_elements(By.TAG_NAME, "a")
-    hrefs = [link.get_attribute("href") for link in links if link.get_attribute("href")]
-
-    driver.quit()
-    return hrefs
-
 
 # Step 3: Scrape content from the extracted links
 def scrape_content_from_link(link):
@@ -47,34 +36,7 @@ def scrape_content_from_link(link):
         return None
 
 
-# Step 4: Main Function to scrape links and content
-def scrape_dynamic_links_and_content(url):
-    links = get_links_from_dynamic_page(url)
-    # scraped_data = {}
-    #
-    # for link in links:
-    #     print(f"Scraping content from: {link}")
-    #     page_text = scrape_content_from_link(link)
-    #     if page_text:
-    #         scraped_data[link] = page_text
-    #
-    # return scraped_data
-    return links
-
-
-# Step 5: Example usage
-if __name__ == "__main__":
-    url_to_scrape = "https://www.codecademy.com/"  # Replace with your target URL
-    scraped_links_and_content = (url_to_scrape)
-
-    # Print out scraped content
-    # for link, content in scraped_links_and_content.items():
-    #     print(f"\nContent from {link}:\n{'-' * 40}\n{content}\n{'-' * 40}")
-
-    print(get_links_from_dynamic_page(url_to_scrape))
-
-
-def find_term_link(url, search_term="term"):
+def find_term_link(url, search_term="Terms"):
     # Set up Chrome options
     chrome_options = Options()
     chrome_options.add_argument("--headless")  # Run in headless mode (no GUI)
@@ -87,29 +49,31 @@ def find_term_link(url, search_term="term"):
         # Navigate to the page
         driver.get(url)
 
-        # Wait for the page to load and find all links
-        links = WebDriverWait(driver, 10).until(
-            EC.presence_of_all_elements_located((By.TAG_NAME, "a"))
+        # Wait for the page to load and find the first link containing the search term
+        wait = WebDriverWait(driver, 10)
+        element = wait.until(
+            EC.presence_of_element_located((By.XPATH, f"//a[contains(text(), '{search_term}')]"))
         )
 
-        # Search for a link containing the search term
-        for link in links:
-            href = link.get_attribute("href")
-            if href and search_term.lower() in href.lower():
-                return href
+        # Get the href attribute of the found element
+        href = element.get_attribute("href")
+        
+        return href
 
-
-        return None  # If no matching link is found
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
 
     finally:
         driver.quit()
 
+# Step 5: Example usage
+if __name__ == "__main__":
+    url_to_scrape = 'https://auth.services.adobe.com/en_US/index.html?callback=https%3A%2F%2Fims-na1.adobelogin.com%2Fims%2Fadobeid%2Fhomepage_milo%2FAdobeID%2Ftoken%3Fredirect_uri%3Dhttps%3A%2F%2Fwww.adobe.com%2Fhome%23old_hash%3D%26from_ims%3Dtrue%3Fclient_id%3Dhomepage_milo%26api%3Dauthorize%26scope%3DAdobeID%2Copenid%2Cgnav%2Cpps.read%2Cfirefly_api%2Cadditional_info.roles%2Cread_organizations%26state%3D%7B%22jslibver%22%3A%22v2-v0.45.0-8-gd14e654%22%2C%22nonce%22%3A%227424714071001927%22%7D%26code_challenge_method%3Dplain%26use_ms_for_expiry%3Dtrue&client_id=homepage_milo&scope=AdobeID%2Copenid%2Cgnav%2Cpps.read%2Cfirefly_api%2Cadditional_info.roles%2Cread_organizations&state=%7B"jslibver"%3A"v2-v0.45.0-8-gd14e654"%2C"nonce"%3A"7424714071001927"%7D&relay=00bc0846-25f4-45d6-91a3-c91343dc14e8&locale=en_US&flow_type=token&idp_flow_type=login&s_p=google%2Cfacebook%2Capple%2Cmicrosoft%2Cline&response_type=token&code_challenge_method=plain&redirect_uri=https%3A%2F%2Fwww.adobe.com%2Fhome%23old_hash%3D%26from_ims%3Dtrue%3Fclient_id%3Dhomepage_milo%26api%3Dauthorize%26scope%3DAdobeID%2Copenid%2Cgnav%2Cpps.read%2Cfirefly_api%2Cadditional_info.roles%2Cread_organizations&use_ms_for_expiry=true#/'
+    result = find_term_link(url_to_scrape)
 
-# Example usage
-url = "https://www.codecademy.com/"
-result = find_term_link(url)
-
-if result:
-    print(f"Found link containing 'term': {result}")
-else:
-    print("No link containing 'term' found")
+    if result:
+        print(f"Found link containing 'Terms': {result}")
+        print(scrape_content_from_link(result))
+    else:
+        print("No link containing 'Terms' found")
