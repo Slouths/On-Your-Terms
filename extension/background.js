@@ -1,7 +1,7 @@
 chrome.action.onClicked.addListener((tab) => {
     const tabUrl = tab.url;
   
-    fetch('http://127.0.0.1:5000/receive-url', {
+    fetch('http://34.45.166.31:5000/receive-url', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

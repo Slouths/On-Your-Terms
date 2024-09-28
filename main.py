@@ -39,7 +39,7 @@ if __name__ == "__main__":
     #     print(scrape_content_from_link(result))
     # else:
     #     print("No link containing 'Terms' found")
-    app.run(debug=True)
+    app.run(app.run(host='0.0.0.0', port=5000))
 
 
     # genai.configure(api_key=api_key)
