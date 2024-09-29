@@ -1,8 +1,6 @@
 # On-Your-Terms 📜✨
 
-![On-Your-Terms Logo]
-
-On-Your-Terms, a partner to the **LEGALESE** software application, is a powerful Chrome extension that finds the terms of service during registration and summarizes it into clear, concise language. Leverage cutting-edge AI to understand exactly what you're agreeing to, **without the legalese**.
+On-Your-Terms, a partner to the **LEGALEASE** software application, is a powerful Chrome extension that finds the terms of service during registration and summarizes it into clear, concise language. Leverage cutting-edge AI to understand exactly what you're agreeing to, **without the legalese**.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
