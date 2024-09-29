@@ -1,0 +1,173 @@
+/* styles.css */
+body {
+    width: 400px;
+    min-height: 300px;  /* Adjust as needed */
+    padding: 10px;
+    padding-bottom: 40px;  /* Make room for the language selector */
+    position: relative;  /* For absolute positioning of child elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #E6D5B8;  /* Light border color, reduced thickness */
+    font-family: Arial, sans-serif;
+    background-color: #FFF5E6;  /* Kept the cream color */
+    margin: 0;  /* Ensures no default margin */
+    box-shadow: none;  /* Removed the box shadow */
+}
+
+/* Update this rule for the title logo */
+#title-logo {
+    width: calc(100% - 20px);  /* Subtract padding from width */
+    max-width: none;  /* Remove the max-width constraint */
+    height: auto;
+    margin: 10px 0 15px;  /* Add top margin */
+    padding: 0 10px;  /* Add horizontal padding */
+}
+
+/* Remove or comment out the .main-title rule since we're no longer using it */
+/* .main-title { ... } */
+
+#shell-e-image {
+    width: calc(100% - 40px);  /* Adjust width to account for padding */
+    max-width: 150px;
+    height: auto;
+    margin: 0 auto 15px;  /* Center the image and add bottom margin */
+    display: block;  /* Ensure it's centered */
+}
+
+.subtitle {
+    position: relative;
+    overflow: hidden;
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 15px;
+    text-align: center;
+    padding: 0 20px;
+    -webkit-text-stroke: 1px transparent;
+    transition: -webkit-text-stroke 0.3s ease;
+}
+
+.subtitle::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to right, 
+        rgba(255, 215, 0, 0) 0%,
+        rgba(255, 215, 0, 0.8) 50%,
+        rgba(255, 215, 0, 0) 100%
+    );
+    transform: rotate(30deg);
+    animation: shine 2s forwards;
+}
+
+@keyframes shine {
+    0% {
+        left: -50%;
+        -webkit-text-stroke: 1px gold;
+    }
+    100% {
+        left: 150%;
+        -webkit-text-stroke: 1px transparent;
+    }
+}
+
+#send-url, #main-page-link {
+    border-radius: 20px;
+    border: none;
+    background-color: #008080;  /* Teal background */
+    color: white;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;  /* Slightly reduce font size */
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.3s ease;
+    margin-bottom: 10px;
+    width: calc(100% - 40px);  /* Adjust width to account for padding */
+    max-width: 250px;  /* Limit maximum width */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#send-url:hover, #main-page-link:hover {
+    background-color: #006666;  /* Darker teal on hover */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+#send-url:active, #main-page-link:active {
+    background-color: #005555;  /* Even darker teal when active */
+    transform: translateY(2px);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.shine-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.shine-effect::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to right, 
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(30deg);
+    animation: shine 3s infinite;
+}
+
+/* Remove any existing ::before or ::after pseudo-elements */
+button::before, button::after,
+#send-url::before, #send-url::after {
+    content: none;
+}
+
+/* Add this new rule */
+html {
+    background-color: transparent;
+    padding: 0;  /* Remove padding */
+    margin: 0;  /* Ensure no margin */
+}
+
+/* Remove individual padding for these elements */
+#shell-e-image,
+.subtitle,
+.small-text,
+#send-url,
+#main-page-link {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* New styles for language select */
+#language-select-container {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 0.8em; /* Makes the text smaller */
+}
+
+#language-select {
+    padding: 2px 5px;
+    font-size: 0.9em; /* Makes the text in the dropdown smaller */
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #f8f8f8;
+}
+
+/* Optional: Style the select on hover and focus */
+#language-select:hover,
+#language-select:focus {
+    border-color: #aaa;
+    outline: none;
+}
