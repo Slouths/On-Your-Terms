@@ -7,9 +7,16 @@
 ## 👥 Authors
 
 - [Patrick Davenport](https://github.com/monochromatrick)
+  <br><sub>Discord: monochromatrick</sub>
+
 - [Taher Akolawala](https://github.com/TaherA51)
+  <br><sub>Discord: permameme</sub>
+
 - [Chris Garate](https://github.com/GheeMann)
+  <br><sub>Discord: gheeman</sub>
+
 - [Nicholas Nunez](https://github.com/Slouths)
+  <br><sub>Discord: slouths</sub>
 
 ## 🚀 Features
 
