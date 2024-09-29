@@ -1,36 +1,55 @@
 let currentLanguage = 'en';
 
-document.getElementById('language-select').addEventListener('change', (event) => {
-    currentLanguage = event.target.value;
-});
+document.addEventListener('DOMContentLoaded', function() {
+    const languageSelect = document.getElementById('language-select');
+    const sendUrlButton = document.getElementById("send-url");
+    const resultsDiv = document.getElementById('results');
 
-document.getElementById("send-url").addEventListener("click", () => {
-    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-        const currentTab = tabs[0].url;
-
-        fetch('http://127.0.0.1:5000/receive-url', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ url: currentTab, language: currentLanguage }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === "success") {
-                console.log('Terms link found:', data.terms_link);
-                console.log('Summary:', data.summary);
-                displayResults(data.terms_link, data.summary);
-            } else {
-                console.error('Error:', data.message);
-                displayError(data.message);
-            }
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            displayError("An error occurred while processing the request.");
+    if (languageSelect) {
+        languageSelect.addEventListener('change', (event) => {
+            currentLanguage = event.target.value;
         });
-    });
+    }
+
+    if (sendUrlButton) {
+        sendUrlButton.addEventListener("click", () => {
+            // Click animation
+            sendUrlButton.style.transform = "scale(0.95)";
+            setTimeout(() => {
+                sendUrlButton.style.transform = "scale(1)";
+            }, 100);
+
+            // Show loading message
+            resultsDiv.innerHTML = '<p>Loading summary...</p>';
+
+            chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+                const currentTab = tabs[0].url;
+
+                fetch('http://127.0.0.1:5000/receive-url', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ url: currentTab, language: currentLanguage }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        console.log('Terms link found:', data.terms_link);
+                        console.log('Summary:', data.summary);
+                        displayResults(data.terms_link, data.summary);
+                    } else {
+                        console.error('Error:', data.message);
+                        displayError(data.message);
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    displayError("An error occurred while processing the request.");
+                });
+            });
+        });
+    }
 });
 
 function displayResults(termsLink, summary) {
