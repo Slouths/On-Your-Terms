@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add this new code to handle the main page button
     const mainPageLink = document.getElementById('main-page-link');
     if (mainPageLink) {
-        mainPageLink.href = "https://your-main-page-url.com"; // Replace with your actual main page URL
+        mainPageLink.href = "https://appapppy-qpjnwnhcmjdxliep8ridx6.streamlit.app/"; // Replace with your actual main page URL
         mainPageLink.addEventListener('click', function(event) {
             event.preventDefault();
             chrome.tabs.create({ url: this.href });
