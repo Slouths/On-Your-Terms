@@ -59,9 +59,11 @@
 
 ## 🧠 Lessons Learned for Future Iterations
 
-- [Lesson 1]
-- [Lesson 2]
-- [Lesson 3]
+- Consistent GitHub commits are crucial: We should have started committing through GitHub consistently from the beginning. This oversight created numerous issues when merging our contributions later, especially as we approached the project deadline.
+
+- Documentation is key: More thorough documentation throughout the development process would have been beneficial. This aligns with the first issue, as we found ourselves backtracing significantly to reconstruct our documentation history.
+
+- Early skill assessment and Git proficiency: Identifying team members' strengths earlier and improving our collective knowledge of Git could have saved considerable time during the final collaboration stages of the project.
 
 ## ✨ Envisioning the Future: Planned Features
 
