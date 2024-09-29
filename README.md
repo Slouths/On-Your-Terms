@@ -1,35 +1,34 @@
 # On-Your-Terms 📜✨
 
-![On-Your-Terms Logo](path/to/logo.png)
+![On-Your-Terms Logo]
 
-On-Your-Terms is a powerful Chrome extension that breaks down complex legal documents and terms of service into clear, concise language. Leverage cutting-edge AI to understand exactly what you're agreeing to, **without the legalese**.
+On-Your-Terms, a partner to the **LEGALESE** software application, is a powerful Chrome extension that finds the terms of service during registration and summarizes it into clear, concise language. Leverage cutting-edge AI to understand exactly what you're agreeing to, **without the legalese**.
 
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/your-extension-id.svg)](https://chrome.google.com/webstore/detail/your-extension-id)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## 🚀 Features
 
 ### Effortless Navigation Through Legal Jargon 📖
 
-* **Simplified Summaries:** Get the gist of lengthy legal documents in a flash.
+* **Simplified Summaries:** Get the gist of lengthy terms of service during registration in a flash.
 * **Plain Language Explanations:** Demystify complex terms with easy-to-understand definitions.
 * **Multilingual Support:** Access summaries in English, Spanish, and Haitian Creole.
-* **Seamless Chrome Integration:** Effortlessly analyze legal documents directly within your browser.
+* **Seamless Chrome Integration:** Effortlessly analyze webpages where ToS is hidden or hard to find directly within your browser.
 
 ## 🛠️ Built with Cutting-Edge Technology
 
-* **AI-Powered Insights:** Google Gemini API delivers accurate and insightful legal summaries.
+* **AI-Powered Insights:** Google Gemini API delivers accurate and insightful legal summaries .
 * **Modern Development Stack:** Built with industry-standard tools for optimal performance and scalability.
 
 ## 🔍 Under the Hood: A Deep Dive
 
 ### Tech Stack
 
-* **Frontend:** HTML, CSS, JavaScript (React.js recommended)
-* **Backend:** Python, Flask (or similar framework)
+* **Frontend:** HTML, CSS, JavaScript 
+* **Backend:** Python, Flask 
 * **AI:** Google Gemini API
 * **Chrome Extension:** Chrome Extension API
-* **Deployment:** [Your deployment platform, e.g., Heroku, AWS]
+* **Deployment:** Locally Hosted
 
 ### Development Journey
 
@@ -46,11 +45,6 @@ On-Your-Terms is a powerful Chrome extension that breaks down complex legal docu
 | [Challenge 2] | [Solution 2] |
 | [Challenge 3] | [Solution 3] |
 
-## ⚡️ Optimizations for Enhanced Performance
-
-- [Optimization 1]
-- [Optimization 2]
-- [Optimization 3]
 
 ## 🧠 Lessons Learned for Future Iterations
 
@@ -60,15 +54,12 @@ On-Your-Terms is a powerful Chrome extension that breaks down complex legal docu
 
 ## ✨ Envisioning the Future: Exciting Advancements
 
-- [ ] [Future Feature 1]
-- [ ] [Future Feature 2]
-- [ ] [Future Feature 3]
+- [ ] [Future Feature 1] Remote hosted servers via AWS or Google Cloud Services to run 24/7
+- [ ] [Future Feature 2] Ability for user to enter their own API key so as to not overload individual API key used for project. 
+- [ ] [Future Feature 3] Pagination: Extension has different pages to store past ToS(s) that have been agreed to by the user.
 
-## 👍 Getting Started: Empower Yourself Today
-
-1. Install the On-Your-Terms extension from the [Chrome Web Store](https://chrome.google.com/webstore/detail/your-extension-id).
-2. Navigate to a webpage containing legal documents or terms of service.
-3. Click the On-Your-Terms extension icon.
-4. Click "Put it on your terms" to access a simplified summary.
 
 ## 🛠️ Local Development Setup
+- To run locally, create a .env file within the On-Your-Terms project file. Within this file create a variable called GOOGLE_API_KEY and set that equal to your own custom Gemini API key that can be found at https://aistudio.google.com/app/apikey.
+- NOTE: .env FILE WITH PERSONAL API KEY WILL BE STORED WITHIN REPO FOR THE DURATION OF HACKATHON. THEREFORE THE STEPS ABOVE MAY BE IGNORED DURING HACKATHON.
+
