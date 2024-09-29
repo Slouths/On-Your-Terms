@@ -35,7 +35,7 @@ def scrape_content_from_link(link):
         print(f"Failed to retrieve {link}: {e}")
         return None
 
-
+#Find the link to the terms of service
 def find_term_link(url, search_term="Terms"):
     # Set up Chrome options
     chrome_options = Options()
