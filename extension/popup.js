@@ -35,12 +35,48 @@ document.getElementById("send-url").addEventListener("click", () => {
 
 function displayResults(termsLink, summary) {
     const resultsDiv = document.getElementById('results');
+
+    // Parse the summary into sections
+    const sections = parseSummary(summary);
+
+    let summaryHTML = '';
+    sections.forEach(section => {
+        summaryHTML += `
+            <div class="summary-section">
+                <h4>${section.title}</h4>
+                <p>${section.content}</p>
+            </div>
+        `;
+    });
+
     resultsDiv.innerHTML = `
         <h3>Terms Link:</h3>
         <p><a href="${termsLink}" target="_blank">${termsLink}</a></p>
         <h3>Summary:</h3>
-        <div>${summary}</div>
+        <div class="summary-container">${summaryHTML}</div>
     `;
+}
+
+function parseSummary(summary) {
+    const lines = summary.split('\n');
+    const sections = [];
+    let currentSection = null;
+
+    lines.forEach(line => {
+        if (line.trim() === '') return; // Skip empty lines
+
+        if (line.includes(':')) {
+            // This line is likely a title
+            if (currentSection) sections.push(currentSection);
+            currentSection = { title: line.trim(), content: '' };
+        } else if (currentSection) {
+            // This line is content for the current section
+            currentSection.content += line.trim() + ' ';
+        }
+    });
+
+    if (currentSection) sections.push(currentSection);
+    return sections;
 }
 
 function displayError(message) {
