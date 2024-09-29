@@ -50,11 +50,11 @@ On-Your-Terms, a partner to the **LEGALEASE** software application, is a powerfu
 - [Lesson 2]
 - [Lesson 3]
 
-## ✨ Envisioning the Future: Exciting Advancements
+## ✨ Envisioning the Future: Planned Features
 
-- [ ] [Future Feature 1] Remote hosted servers via AWS or Google Cloud Services to run 24/7
-- [ ] [Future Feature 2] Ability for user to enter their own API key so as to not overload individual API key used for project. 
-- [ ] [Future Feature 3] Pagination: Extension has different pages to store past ToS(s) that have been agreed to by the user.
+- [ ] Remote hosted servers via AWS or Google Cloud Services to run 24/7
+- [ ] Ability for user to enter their own API key so as to not overload individual API key used for project. 
+- [ ] Pagination: Extension will have different pages to store past ToS(s) that have been agreed to by the user for reviewal.
 
 
 ## 🛠️ Local Development Setup
