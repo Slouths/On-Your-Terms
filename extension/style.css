@@ -171,3 +171,57 @@ html {
     border-color: #aaa;
     outline: none;
 }
+
+.loading-circle-container {
+    width: calc(100% - 40px);  /* Match the button width */
+    max-width: 250px;  /* Match the button max-width */
+    height: 40px; /* Match the height of your button */
+    background-color: #008080;  /* Match the button's background color */
+    border-radius: 20px; /* Match the border-radius of your button */
+    overflow: hidden;
+    margin-bottom: 10px; /* Match the button's margin */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);  /* Match the button's box shadow */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-circle {
+    width: 24px;
+    height: 24px;
+    border: 3px solid #FFF5E6;  /* Light color to match your theme */
+    border-top: 3px solid #006666;  /* Darker teal for contrast */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* New styles for centered titles and links */
+.centered-title {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.centered-link {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.summary-container {
+    text-align: left; /* Ensure summary content remains left-aligned */
+}
+
+.summary-section h4 {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.summary-section p {
+    font-weight: normal;
+    margin-top: 0;
+}

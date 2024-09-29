@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 sendUrlButton.style.transform = "scale(1)";
             }, 100);
 
-            // Show a loading message while fetching the summary
-            resultsDiv.innerHTML = '<p>Loading summary...</p>';
+            // Replace the button with a loading circle
+            replaceButtonWithLoadingCircle(sendUrlButton);
 
             // Get the URL of the current active tab
             chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 })
                 .then(response => response.json())
                 .then(data => {
+                    restoreButton();
                     if (data.status === "success") {
                         console.log('Terms link found:', data.terms_link);
                         console.log('Summary:', data.summary);
@@ -52,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 })
                 .catch((error) => {
+                    restoreButton();
                     console.error('Error:', error);
                     displayError("An error occurred while processing the request.");
                 });
@@ -77,13 +79,12 @@ function displayResults(termsLink, summary) {
     });
 
     resultsDiv.innerHTML = `
-        <h3>Terms Link:</h3>
-        <p><a href="${termsLink}" target="_blank">${termsLink}</a></p>
-        <h3>Summary:</h3>
+        <h3 class="centered-title">Summary:</h3>
         <div class="summary-container">${summaryHTML}</div>
+        <p class="centered-link"><a href="${termsLink}" target="_blank">${termsLink}</a></p>
+
     `;
 }
-
 // Function to parse the summary into sections
 function parseSummary(summary) {
     const lines = summary.split('\n');
@@ -112,4 +113,45 @@ function parseSummary(summary) {
 function displayError(message) {
     const resultsDiv = document.getElementById('results');
     resultsDiv.innerHTML = `<p style="color: red;">Error: ${message}</p>`;
+}
+
+// Add these new functions at the end of the file
+function showLoadingBar() {
+    const resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = `
+        <div class="loading-bar-container">
+            <div class="loading-bar"></div>
+        </div>
+    `;
+}
+
+function hideLoadingBar() {
+    const loadingBarContainer = document.querySelector('.loading-bar-container');
+    if (loadingBarContainer) {
+        loadingBarContainer.remove();
+    }
+}
+
+function replaceButtonWithLoadingCircle(button) {
+    const loadingCircleContainer = document.createElement('div');
+    loadingCircleContainer.className = 'loading-circle-container';
+    const loadingCircle = document.createElement('div');
+    loadingCircle.className = 'loading-circle';
+    loadingCircleContainer.appendChild(loadingCircle);
+    
+    button.style.display = 'none';
+    button.parentNode.insertBefore(loadingCircleContainer, button.nextSibling);
+}
+
+function restoreButton() {
+    const sendUrlButton = document.getElementById('send-url');
+    const loadingCircleContainer = document.querySelector('.loading-circle-container');
+    
+    if (loadingCircleContainer) {
+        loadingCircleContainer.remove();
+    }
+    
+    if (sendUrlButton) {
+        sendUrlButton.style.display = 'block';
+    }
 }
