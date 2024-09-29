@@ -53,10 +53,9 @@
 
 | Challenge | Solution |
 |-----------|----------|
-| [Challenge 1] | [Solution 1] |
-| [Challenge 2] | [Solution 2] |
-| [Challenge 3] | [Solution 3] |
-
+| Making web scraper to find ToS | We troubleshooted the URL endpoints to make sure the correct connections were being made. |
+| Getting hosting to work | We removed specific versions from certain libraries and backtraced to find the correct versions that would allow us to successfully host. |
+| Connecting the extension and webpage to the backend | We all contributed to writing the code to connect the extension to the backend through the use of GitHub and communicating non-stop to ensure that the code was working. |
 
 ## 🧠 Lessons Learned for Future Iterations
 
