@@ -1,3 +1,9 @@
+let currentLanguage = 'en';
+
+document.getElementById('language-select').addEventListener('change', (event) => {
+    currentLanguage = event.target.value;
+});
+
 document.getElementById("send-url").addEventListener("click", () => {
     chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
         const currentTab = tabs[0].url;
@@ -7,18 +13,16 @@ document.getElementById("send-url").addEventListener("click", () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ url: currentTab }),
+            body: JSON.stringify({ url: currentTab, language: currentLanguage }),
         })
         .then(response => response.json())
         .then(data => {
             if (data.status === "success") {
                 console.log('Terms link found:', data.terms_link);
-                console.log('Content:', data.content);
-                // You can update the popup HTML here to display the results
-                displayResults(data.terms_link, data.content);
+                console.log('Summary:', data.summary);
+                displayResults(data.terms_link, data.summary);
             } else {
                 console.error('Error:', data.message);
-                // Display error message in the popup
                 displayError(data.message);
             }
         })
@@ -29,20 +33,17 @@ document.getElementById("send-url").addEventListener("click", () => {
     });
 });
 
-function displayResults(termsLink, content) {
-    const resultsDiv = document.createElement('div');
+function displayResults(termsLink, summary) {
+    const resultsDiv = document.getElementById('results');
     resultsDiv.innerHTML = `
         <h3>Terms Link:</h3>
         <p><a href="${termsLink}" target="_blank">${termsLink}</a></p>
-        <h3>Content:</h3>
-        <pre>${content}</pre>
+        <h3>Summary:</h3>
+        <div>${summary}</div>
     `;
-    document.body.appendChild(resultsDiv);
 }
 
 function displayError(message) {
-    const errorDiv = document.createElement('div');
-    errorDiv.textContent = `Error: ${message}`;
-    errorDiv.style.color = 'red';
-    document.body.appendChild(errorDiv);
+    const resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = `<p style="color: red;">Error: ${message}</p>`;
 }
