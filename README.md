@@ -1,8 +1,15 @@
 # On-Your-Terms 📜✨
 
-On-Your-Terms, a partner to the **LEGALEASE** software application, is a powerful Chrome extension that finds the terms of service during registration and summarizes it into clear, concise language. Leverage cutting-edge AI to understand exactly what you're agreeing to, **without the legalese**.
+**LEGALEASE** is a powerful Chrome extension that finds the terms of service during registration and summarizes it into clear, concise language. Leverage cutting-edge AI to understand exactly what you're agreeing to, **without the legalese**.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## 👥 Authors
+
+- [Patrick Davenport](https://github.com/monochromatrick)
+- [Taher Akolawala](https://github.com/TaherA51)
+- [Chris Garate](https://github.com/GheeMann)
+- [Nicholas Nunez](https://github.com/Slouths)
 
 ## 🚀 Features
 
